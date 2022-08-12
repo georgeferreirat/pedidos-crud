@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Pedidos.Models.Pedido>
+
+@{
+    ViewData["Title"] = "Pedidos Cadastrados";
+}
+
+<div class="pt-5">
+    <p>
+        <a asp-action="NovoPedido" class="btn btn-outline-dark btn-sm">Novo Pedido</a>
+    </p>
+
+    <hr />
+
+    <div class="border border-light rounded-lg shadow">
+        <div class="container p-5">
+            @if(Model.Count() > 0){
+                <div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col">
+                                    <h6>Fornecedor</h6>
+                                </div>
+
+                                <div class="col">
+                                    <h6>Produto</h6>
+                                </div>
+
+                                <div class="col">
+                                    <h6>Quantidade de Produtos</h6>
+                                </div>
+
+                                <div class="col">
+                                    <h6>Valor Total</h6>
+                                </div>
+
+                                <div class="col">
+                                    <h6>Data Pedido</h6>
+                                </div>
+
+                                <div class="col">
+                                    <h6>Ações</h6>
+                                </div>
+                            </div>
+                        </li>
+                        @foreach (var item in Model)
+                        {
+                            <li class="list-group-item @item.IdPedido">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5>@Html.DisplayFor(modelItem => item.Fornecedor.RazaoSocial)</h5>
+                                    </div>
+
+                                    <div class="col">
+                                        <h5>@Html.DisplayFor(modelItem => item.Produto.Descricao)</h5>
+                                    </div>
+
+                                    <div class="col">
+                                        <h5>@Html.DisplayFor(modelItem => item.QtdeProdutos)</h5>
+                                    </div>
+
+                                    <div class="col">
+                                        <h5>R$ @Html.DisplayFor(modelItem => item.ValorTotal)</h5>
+                                    </div>
+
+                                    <div class="col">
+                                        <h5>@Html.DisplayFor(modelItem => item.DtPedido)</h5>
+                                    </div>
+
+                                    <div class="col">
+                                        <a asp-action="AtualizarPedido" asp-controller="Pedido" asp-route-idPedido="@item.IdPedido" class="btn btn-primary btn-sm btn-rounded-circle">
+                                            <i class="fa fa-pencil-square-o"></i>
+                                        </a>
+
+                                        <a asp-action="DetalhesPedido" asp-controller="Pedido" asp-route-idPedido="@item.IdPedido" class="btn btn-secondary btn-sm btn-rounded-circle">
+                                            <i class="fa fa-tasks"></i>
+                                        </a>
+
+                                        <a style="color:white; cursor:pointer;" class="btn btn-danger btn-sm btn-rounded-circle" onclick="Excluir(@item.IdPedido, 'Pedido')">
+                                            <i class="fa fa-times-circle"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+            else{
+                <div class="alert alert-warning">
+                    <span>Sem pedidos ainda</span>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/Exclusao.js"></script>
+}

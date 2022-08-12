@@ -1,0 +1,33 @@
+﻿@model Pedidos.Models.Produto
+
+@{
+    ViewData["Title"] = "Novo Produto";
+}
+
+<div class="border border-light rounded-lg p-5 shadow">
+    <h6>Novo Produto</h6>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="NovoProduto">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Descricao" class="col-form-label col-form-label-sm"></label>
+                    <input asp-for="Descricao" class="form-control form-control-sm" />
+                    <span asp-validation-for="Descricao" class="text-danger"></span>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <label asp-for="Valor" class="col-form-label col-form-label-sm"></label>
+                    <input asp-for="Valor" class="form-control form-control-sm" />
+                    <span asp-validation-for="Valor" class="text-danger"></span>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <input type="submit" value="Salvar" class="btn btn-outline-success btn-sm" />
+                    <a asp-action="Index" class="btn btn-light btn-sm">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

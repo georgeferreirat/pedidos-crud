@@ -1,0 +1,50 @@
+﻿@model Pedidos.Models.Pedido
+
+@{
+    ViewData["Title"] = "Novo Pedido";
+}
+
+<div class="border border-light rounded-lg p-5 shadow">
+    <h6>Novo Pedido</h6>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="NovoPedido">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="FornecedorIdFornecedor" class="col-form-label col-form-label-sm"></label>
+                    <select asp-for="FornecedorIdFornecedor" class="form-control form-control-sm" asp-items="ViewBag.FornecedorIdFornecedor">
+                        <option value="">Selecione um Fornecedor</option>
+                    </select>
+                    <span asp-validation-for="FornecedorIdFornecedor" class="text-danger"></span>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <label asp-for="ProdutoIdProduto" class="col-form-label col-form-label-sm"></label>
+                    <select asp-for="ProdutoIdProduto" class="form-control form-control-sm" asp-items="ViewBag.ProdutoIdProduto">
+                        <option value="">Selecione um Produto</option>
+                    </select>
+                    <span asp-validation-for="ProdutoIdProduto" class="text-danger"></span>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <label asp-for="QtdeProdutos" class="col-form-label col-form-label-sm"></label>
+                    <input asp-for="QtdeProdutos" class="form-control form-control-sm" />
+                    <span asp-validation-for="QtdeProdutos" class="text-danger"></span>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <label asp-for="DtPedido" class="col-form-label col-form-label-sm"></label>
+                    <input asp-for="DtPedido" class="form-control form-control-sm" />
+                    <span asp-validation-for="DtPedido" class="text-danger"></span>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <input type="submit" value="Salvar" class="btn btn-outline-success btn-sm" />
+                    <a asp-action="Index" class="btn btn-light btn-sm">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Pedidos.Models.Fornecedor>
+
+@{
+    ViewData["Title"] = "Fornecedores Cadastrados";
+}
+
+<div class="pt-5">
+    <p>
+        <a asp-action="NovoFornecedor" class="btn btn-outline-dark btn-sm">Novo Fornecedor</a>
+    </p>
+
+    <hr />
+
+    <div class="border border-light rounded-lg shadow">
+        <div class="container p-5">
+            @if (Model.Count() > 0)
+            {
+                <div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-2" style="text-align: center;">
+                                    <h6>Razão Social</h6>
+                                </div>
+
+                                <div class="col-2" style="text-align: center;">
+                                    <h6>CNPJ</h6>
+                                </div>
+
+                                <div class="col-1" style="text-align: center;">
+                                    <h6>UF</h6>
+                                </div>
+
+                                <div class="col-3" style="text-align: center;">
+                                    <h6>Email Contato</h6>
+                                </div>
+
+                                <div class="col-2" style="text-align: center;">
+                                    <h6>Nome Contato</h6>
+                                </div>
+
+                                <div class="col-2" style="text-align: center;">
+                                    <h6>Ações</h6>
+                                </div>
+                            </div>
+                        </li>
+                        @foreach (var item in Model)
+                        {
+                            <li class="list-group-item @item.IdFornecedor">
+                                <div class="row">
+                                    <div class="col-2" style="text-align: center;">
+                                        <h5>@Html.DisplayFor(modelItem => item.RazaoSocial)</h5>
+                                    </div>
+
+                                    <div class="col-2" style="text-align: center;">
+                                        <h5>@Html.DisplayFor(modelItem => item.CNPJ)</h5>
+                                    </div>
+
+                                    <div class="col-1" style="text-align: center;">
+                                        <h5>@Html.DisplayFor(modelItem => item.UF)</h5>
+                                    </div>
+
+                                    <div class="col-3" style="text-align: center;">
+                                        <h5>@Html.DisplayFor(modelItem => item.EmailContato)</h5>
+                                    </div>
+
+                                    <div class="col-2" style="text-align: center;">
+                                        <h5>@Html.DisplayFor(modelItem => item.NomeContato)</h5>
+                                    </div>
+
+                                    <div class="col-2" style="text-align: right;">
+                                        <a asp-action="AtualizarFornecedor" asp-controller="Fornecedor" asp-route-idFornecedor="@item.IdFornecedor" class="btn btn-primary btn-sm btn-rounded-circle">
+                                            <i class="fa fa-pencil-square-o"></i>
+                                        </a>
+
+                                        <a asp-action="DetalhesFornecedor" asp-controller="Fornecedor" asp-route-idFornecedor="@item.IdFornecedor" class="btn btn-secondary btn-sm btn-rounded-circle">
+                                            <i class="fa fa-tasks"></i>
+                                        </a>
+
+                                        <a style="color:white; cursor:pointer;" class="btn btn-danger btn-sm btn-rounded-circle" onclick="Excluir(@item.IdFornecedor, 'Fornecedor')">
+                                            <i class="fa fa-times-circle"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-warning">
+                    <span>Sem fornecedores ainda</span>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/Exclusao.js"></script>
+}
